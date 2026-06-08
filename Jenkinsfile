@@ -1,25 +1,23 @@
 pipeline {
-
-    agent { label 'docker-agent' }
+    agent {
+        docker { 
+            image 'ubuntu:latest' 
+        }
+    }
+    
+    options {
+        // This ensures builds don't get stuck forever if something goes wrong
+        timeout(time: 5, unit: 'MINUTES') 
+    }
 
     stages {
-
-        stage("Hello") {
-            when {
-                expression { env.BRANCH_NAME == 'main' } 
-            }
+        stage('DevOps Homework Execution') {
             steps {
-		    sleep 120 // 2 minutes
-                    echo 'was asleep for 2 minutes'
-		    
-            }
-        }
-        stage('Wildcard Branch Check') {
-            when {
-                branch 'feature/*' 
-            }
-            steps {
-                echo "Running on a feature branch."
+                // Print the text required by your assignment instructions
+                sh "echo 'this is the main branch'"
+                
+                // Keep the container alive for 120 seconds so you can catch it with 'docker ps'
+                sh "sleep 120"
             }
         }
     }
