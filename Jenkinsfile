@@ -9,7 +9,9 @@ pipeline {
                 expression { env.BRANCH_NAME == 'main' } 
             }
             steps {
-                    echo 'This is the testing branch'
+		    sleep 120 // 2 minutes
+                    echo 'was asleep for 2 minutes'
+		    
             }
         }
         stage('Wildcard Branch Check') {
