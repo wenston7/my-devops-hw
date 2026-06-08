@@ -9,7 +9,7 @@ pipeline {
                 expression { env.BRANCH_NAME == 'main' } 
             }
             steps {
-                    echo 'Hello World'
+                    echo 'Hello from my WSL2 enviroment class!'
             }
         }
         stage('Wildcard Branch Check') {
