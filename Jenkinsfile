@@ -9,7 +9,7 @@ pipeline {
                 expression { env.BRANCH_NAME == 'main' } 
             }
             steps {
-                    echo 'This is the main branch'
+                    echo 'This is the testing branch'
             }
         }
         stage('Wildcard Branch Check') {
