@@ -1,23 +1,19 @@
 pipeline {
-    agent {
-        docker { 
-            image 'ubuntu:latest' 
-        }
-    }
-    
+    agent any 
+
     options {
-        // This ensures builds don't get stuck forever if something goes wrong
         timeout(time: 5, unit: 'MINUTES') 
     }
 
     stages {
-        stage('DevOps Homework Execution') {
+        stage('Run Dynamic Container') {
             steps {
-                // Print the text required by your assignment instructions
+                // 1. Print out the exact phrase requested by your homework assignment
                 sh "echo 'this is the main branch'"
                 
-                // Keep the container alive for 120 seconds so you can catch it with 'docker ps'
-                sh "sleep 120"
+                // 2. Manually launch a background container and make it hold open for 120 seconds
+                // This guarantees it will show up when you run 'docker ps'
+                sh "docker run -d --name hw-test-container-${BUILD_NUMBER} ubuntu:latest sleep 120"
             }
         }
     }
