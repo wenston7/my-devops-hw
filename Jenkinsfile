@@ -1,23 +1,19 @@
 pipeline {
+    agent any
 
-    agent { label 'docker-agent' }
+    options {
+        timeout(time: 5, unit: 'MINUTES')
+    }
 
     stages {
-
-        stage("Hello") {
-            when {
-                expression { env.BRANCH_NAME == 'main' } 
-            }
+        stage('DevOps Homework Execution') {
             steps {
-                    echo 'This is the main branch'
-            }
-        }
-        stage('Wildcard Branch Check') {
-            when {
-                branch 'feature/*' 
-            }
-            steps {
-                echo "Running on a feature branch."
+                // 1. Print out the exact phrase requested by your homework assignment
+                sh "echo 'this is the main branch'"
+                
+                // 2. Structuring background process holds to simulate container lifetimes
+                // without relying on internal nesting binaries
+                sh "sleep 120"
             }
         }
     }
